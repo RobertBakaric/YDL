@@ -1,0 +1,91 @@
+NAME
+    YDLCreator - Young Diagram Lattice Calculator
+
+SYNOPSIS
+        use YDL::Compute;
+        use YDL::Draw;
+
+        my $YDLcomp = YDL::Compute->new();
+        my $YDLdraw = YDL::Draw->new();
+
+        # -----        Compute YDL        ----- #
+        my $compute = $YDLcomp->YDLCompute(states => $N);
+
+        # -----     Get YDL  lattice      ----- #
+        $l = $compute->GetLattice();
+
+        # -----    Parse YDL  lattice     ----- #
+        my $table = ParseLattice($l);
+        sub ParseLattice {
+
+            my ($array) = @_;
+          my %latt;
+
+            foreach my $part (@{$array}){
+                    my @x = split("\t", $part);
+                    push(@{$latt{$x[1]}}, $x[0]);
+            }
+            return \%latt;
+        }
+
+        # -----        Draw YDL        ----- #
+        # $conf = [N, 0,0,..,0(N-1)]
+        $YDLdraw->YDLDraw(start => $conf,  lattice => $table);
+
+DESCRIPTION
+    In mathematics, Young's lattice is a partially ordered set of Young
+    diagrams that is formed by connecting all integer partitions of a given
+    diagram. It was named after Alfred Young, who developed the
+    representation theory of the symmetric groups. In Young's theory, the
+    objects (now called Young diagrams) can be partially ordered by
+    inclusion resulting in a so called partially ordered set termed Young's
+    lattice.
+
+    Moreover, given M^l it is possible to extract a complete list of
+    irreducible subrepresentations (S^l) form a complete list as l varies
+    over all possible partitions. Here one such set is computed and its
+    representation illustrated using a Hesse diagram:
+
+                                A
+                                |
+                                B
+                              /   \
+                            C       D
+                              \   /
+                                E
+                                |
+                                F
+                                |
+                                G
+
+    Where A, B, ...G are Young diagrams depicting a given partition.
+
+AUTHOR
+    Robert Bakaric <rbakaric@exaltum.eu>
+
+LICENSE
+
+
+#  Copyright 2016 Robert Bakaric <rbakaric@exaltum.eu>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#
+#
+
+ACKNOWLEDGEMENT
+          1. William Fulton (1997) Young Tableaux: With Applications to
+          Representation Theory and Geometry. Cambridge University Press.
+

@@ -1,0 +1,14 @@
+AUTHORS
+MANIFEST
+ChangeLog
+COPYING
+Makefile.PL
+NEWS
+README
+demo/YDLattice.pdf
+doc/YDL.pdf
+src/apps/YDLCreator.pl
+src/lib/YDL/Compute.pm
+src/lib/YDL/Draw.pm
+src/t/00-load.t
+src/t/01-Compute.t
